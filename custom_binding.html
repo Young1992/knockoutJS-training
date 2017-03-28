@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Example: Custom binding</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+</head>
+<body>
+
+	<h1 data-bind="changeColour: colour">Change Colour</h1>
+	<select data-bind="value: colour">
+		<option value="black">Choose colour</option>
+		<option value="red">red</option>
+		<option value="green">green</option>
+		<option value="blue">blue</option>
+		<option value="yellow">yellow</option>
+	</select>
+
+	<br>
+
+	<h1 data-bind="textFadeIn: msg">Text FadeIn</h1>
+	<input type="text" data-bind="value: msg">	
+
+
+<script type="text/javascript">
+
+	ko.bindingHandlers.changeColour = {
+		update: function(element, valueAccessor){
+			var element = $(element);
+			var value = valueAccessor();
+			var valueUnwrapped = ko.unwrap(value);
+			element.css('color', valueUnwrapped);
+		}
+	}
+
+	ko.bindingHandlers.textFadeIn = {
+		update: function(element, valueAccessor){
+			$(element).hide();
+			ko.bindingHandlers.text.update(element, valueAccessor);
+			$(element).fadeIn();
+		}
+	}
+
+	var viewModel = {
+		colour: ko.observable(),
+		msg: ko.observable("Text FadeIn")
+	}
+
+	ko.applyBindings(viewModel);
+
+</script>
+</body>
+</html>

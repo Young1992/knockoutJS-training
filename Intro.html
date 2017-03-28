@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Example: View Model</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+</head>
+<body>
+
+<h1>Welcome <span data-bind="text: firstName"></span> <span data-bind = "text: lastName"></span></h1>
+<br>
+<label>First Name</label>
+<input type="text" data-bind="value: firstName, valueUpdate: 'afterkeydown'">
+<label>Last Name</label>
+<input type="text" data-bind="value: lastName, valueUpdate: 'afterkeydown'">
+
+<button>Change</button>
+
+<script type="text/javascript">
+	// var myViewModel = {
+	// 	firstName: ko.observable('John'),
+	// 	lastName: ko.observable('Doe'),
+	// }
+
+	// $('button').click(function(){
+	// 	myViewModel.firstName('George');
+	// 	myViewModel.lastName('Williams');
+	// });
+
+	// myViewModel.firstName.subscribe(function(newValue){
+	// 	alert("The user's first name is now " + newValue);
+	// });
+
+	// myViewModel.firstName.subscribe(function(oldValue){
+	// 	alert("The user's first name was " + oldValue);
+	// });
+
+	// ko.applyBindings(myViewM odel);
+
+	//observableArray
+	var userArray1 = ko.observableArray(['A', 'B', 'C']);
+	var userArray2 = ko.observableArray([{firstName: '', lastName: ''}, 
+		{firstName: '', lastName: ''}, 
+		{firstName: '', lastName: ''},]);
+	alert('There are '+userArray1().length+' users in the array');
+
+	userArray1().push('D');
+
+</script>
+</body>
+</html>

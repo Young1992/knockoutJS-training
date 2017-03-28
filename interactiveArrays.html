@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Example: Interactive Arrays</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+</head>
+<body>
+<h4>Users</h4>
+<ul data-bind="foreach: users">
+	<li>
+		<span data-bind="text: $index"></span>
+		<span data-bind="text: name"></span>
+		<span><a href="#" data-bind="click: $parent.removeUser">Remove</a></span>
+	</li>
+</ul>
+
+<input type="text" id="newUser">
+<button data-bind="click: addUser">Add User</button>
+
+
+<script type="text/javascript">
+	function viewModel(){
+		var self = this;
+		self.users = ko.observableArray([
+			{name: 'A'},
+			{name: 'B'},
+			{name: 'C'}
+			]);
+
+		self.addUser = function(){
+			self.users.push({name: $('#newUser').val()});
+		}
+
+		self.removeUser = function(){
+			self.users.remove(this);
+		}
+	}
+
+	ko.applyBindings(new viewModel());
+
+</script>
+</body>
+</html>

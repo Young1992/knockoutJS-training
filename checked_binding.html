@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Example: Value binding</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+</head>
+<body>
+
+	<p>My Checkbox <input type="checkbox" data-bind="checked: checkIt"></p>
+	<button data-bind="click: checkIt">Check the box</button>
+
+
+<script type="text/javascript">
+
+	var viewModel = {
+		checkIt: ko.observable(true)
+	}
+	viewModel.checkIt(false);
+
+	ko.applyBindings(viewModel);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Example: attr binding</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+</head>
+<body>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Employee ID</th>
+				<th>Employee Name</th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: employees">
+			<tr data-bind="if: id">
+				<td data-bind="text: id"></td>
+				<td data-bind="text: name"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<ul data-bind="foreach: customers">
+		<li><span data-bind="text: $data"></span></li>
+	</ul>
+
+<script type="text/javascript">
+
+	var employees = ko.observableArray([
+		{id: "e100", name: "XY"},
+		{id: null, name: "Z"},
+		{id: "e300", name: "ZZ"},
+	]);
+
+	var customers = ko.observableArray(["AA", "BB", "CC"]);
+
+	ko.applyBindings();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+</head>
+<body>
+
+	<newsletter-widget></newsletter-widget>
+
+<script type="text/javascript">
+
+	ko.components.register('newsletter-widget', {
+	viewModel: function(){
+		this.email = ko.observable();
+		this.showMessage = ko.observable(false);
+		this.submitForm = function(){
+			this.showMessage(true);
+			}
+		},
+		template: '<h3>Subcribe to our newsletter</h3>\
+		<form data-bind="submit: submitForm">\
+		<input data-bind="value: email">\
+		<button type="submit">Submit</button>\
+		</form>\
+		<p data-bind="visible: showMessage">Thanks for subscribing: <br><strong><span data-bind="text: email"></span></stron></p>'
+	});
+
+	ko.applyBindings();
+
+</script>
+</body>
+</html>
